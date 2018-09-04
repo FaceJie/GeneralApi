@@ -43,6 +43,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -104,6 +108,8 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\GlobalJS\CheckFunction.js" />
+    <Content Include="Content\GlobalJS\CommonJS.js" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -112,9 +118,15 @@
     <Content Include="Areas\CRUD_Common\Views\_ViewStart.cshtml" />
     <Content Include="Areas\CRUD_Common\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\CRUD_Common\Views\Base\Index.cshtml" />
+    <Content Include="App_Data\log4net.config" />
+    <Content Include="Areas\Quartz_NET\Views\web.config" />
+    <Content Include="Areas\Quartz_NET\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Quartz_NET\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Quartz_NET\Views\Home\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\JQuery\jquery.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -123,6 +135,9 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\CRUD_Common\Controllers\BaseController.cs" />
     <Compile Include="Areas\CRUD_Common\CRUD_CommonAreaRegistration.cs" />
+    <Compile Include="Areas\Quartz_NET\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Quartz_NET\Quartz_NETAreaRegistration.cs" />
+    <Compile Include="Content\Quartz.NET\App.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -148,9 +163,15 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Areas\CRUD_Common\Models\" />
+    <Folder Include="Areas\Quartz_NET\Models\" />
     <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{d5ab0268-f8b1-4954-a2bf-954deba413e0}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
