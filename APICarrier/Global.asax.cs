@@ -8,6 +8,7 @@ using System.Web.Security;
 using System.Web.SessionState;
 using System.Web.Http;
 using APICarrier.Content.Quartz.NET;
+using log4net.Config;
 
 namespace APICarrier
 {
@@ -22,6 +23,7 @@ namespace APICarrier
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             //日志
             System.IO.FileInfo fileinfo = new System.IO.FileInfo(Server.MapPath("~/App_Data/log4net.Config"));
+            //向数据库写日志
             log4net.Config.XmlConfigurator.Configure(fileinfo);
             log.Info("网站己启动......");
 
