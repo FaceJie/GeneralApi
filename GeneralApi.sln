@@ -1,0 +1,59 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApplicationLibrary", "ApplicationLibrary", "{AC5553B8-7578-494C-9A2F-5A6BC644387A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApplicationService", "ApplicationService", "{F18D9944-952C-4098-85BB-5755BA1C943F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApplicationProgram", "ApplicationProgram", "{886FF918-7998-48D9-9C31-ADD6EB857D9F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{D5AB0268-F8B1-4954-A2BF-954DEBA413E0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataPojo", "DataPojo\DataPojo.csproj", "{BDE9CEFC-2588-4768-B250-C29E59345C84}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PojoService", "PojoService\PojoService.csproj", "{CD6680C4-8DA2-4AA6-ADC3-B7E1B8CAA879}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APICarrier", "APICarrier\APICarrier.csproj", "{0ED73787-B287-4DD7-B8E6-2779FF70EE79}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APICarrier.Tests", "APICarrier.Tests\APICarrier.Tests.csproj", "{1FC2706D-6D97-4A7E-942A-97D6F4E24A65}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D5AB0268-F8B1-4954-A2BF-954DEBA413E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5AB0268-F8B1-4954-A2BF-954DEBA413E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5AB0268-F8B1-4954-A2BF-954DEBA413E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5AB0268-F8B1-4954-A2BF-954DEBA413E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDE9CEFC-2588-4768-B250-C29E59345C84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDE9CEFC-2588-4768-B250-C29E59345C84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDE9CEFC-2588-4768-B250-C29E59345C84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDE9CEFC-2588-4768-B250-C29E59345C84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD6680C4-8DA2-4AA6-ADC3-B7E1B8CAA879}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD6680C4-8DA2-4AA6-ADC3-B7E1B8CAA879}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD6680C4-8DA2-4AA6-ADC3-B7E1B8CAA879}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD6680C4-8DA2-4AA6-ADC3-B7E1B8CAA879}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0ED73787-B287-4DD7-B8E6-2779FF70EE79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0ED73787-B287-4DD7-B8E6-2779FF70EE79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0ED73787-B287-4DD7-B8E6-2779FF70EE79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0ED73787-B287-4DD7-B8E6-2779FF70EE79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FC2706D-6D97-4A7E-942A-97D6F4E24A65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FC2706D-6D97-4A7E-942A-97D6F4E24A65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FC2706D-6D97-4A7E-942A-97D6F4E24A65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FC2706D-6D97-4A7E-942A-97D6F4E24A65}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D5AB0268-F8B1-4954-A2BF-954DEBA413E0} = {AC5553B8-7578-494C-9A2F-5A6BC644387A}
+		{BDE9CEFC-2588-4768-B250-C29E59345C84} = {F18D9944-952C-4098-85BB-5755BA1C943F}
+		{CD6680C4-8DA2-4AA6-ADC3-B7E1B8CAA879} = {F18D9944-952C-4098-85BB-5755BA1C943F}
+		{0ED73787-B287-4DD7-B8E6-2779FF70EE79} = {886FF918-7998-48D9-9C31-ADD6EB857D9F}
+		{1FC2706D-6D97-4A7E-942A-97D6F4E24A65} = {886FF918-7998-48D9-9C31-ADD6EB857D9F}
+	EndGlobalSection
+EndGlobal
