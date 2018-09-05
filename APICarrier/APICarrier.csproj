@@ -137,7 +137,7 @@
     <Compile Include="Areas\CRUD_Common\CRUD_CommonAreaRegistration.cs" />
     <Compile Include="Areas\Quartz_NET\Controllers\HomeController.cs" />
     <Compile Include="Areas\Quartz_NET\Quartz_NETAreaRegistration.cs" />
-    <Compile Include="Content\Log\LogContent.cs" />
+    <Compile Include="Content\Log\LogModelSet.cs" />
     <Compile Include="Content\Quartz.NET\App.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Global.asax.cs">

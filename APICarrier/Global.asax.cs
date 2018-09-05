@@ -9,12 +9,13 @@ using System.Web.SessionState;
 using System.Web.Http;
 using APICarrier.Content.Quartz.NET;
 using log4net.Config;
+using APICarrier.Content.Log;
 
 namespace APICarrier
 {
     public class Global : HttpApplication
     {
-        readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        
         void Application_Start(object sender, EventArgs e)
         {
             // 在应用程序启动时运行的代码
@@ -23,10 +24,7 @@ namespace APICarrier
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             //日志
             System.IO.FileInfo fileinfo = new System.IO.FileInfo(Server.MapPath("~/App_Data/log4net.Config"));
-            //向数据库写日志
             log4net.Config.XmlConfigurator.Configure(fileinfo);
-            log.Info("网站己启动......");
-
             //任务调度
             App.Init();
         }
