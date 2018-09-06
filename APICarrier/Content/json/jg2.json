@@ -1,0 +1,1 @@
+﻿{ "code": 0, "msg": null, "count": 4, "data": [{ "Id": "0a7ebd0c-78d6-4fbc-8fbe-6fc25c3a932d", "Name": "测试", "Status": 1, "Type": 0, "Organizations": "研发部,集团总部,研发小组", "OrganizationIds": "990cb229-cc18-41f3-8e2b-13f0f0110798,543a9fcf-4770-4fd9-865f-030e562be238,08f41bf6-4388-4b1e-bd3e-2ff538b44b1b", "Checked": false }] }
