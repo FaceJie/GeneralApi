@@ -58,6 +58,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EFFactory\EFFactory.cs" />
     <Compile Include="EntityExtention\Imp\BaseRepository.cs" />
     <Compile Include="EntityExtention\Imp\PageCollection.cs" />
     <Compile Include="EntityExtention\IRepository.cs" />

@@ -19,13 +19,8 @@ namespace DataPojo.EntityExtention.Imp
 {
     public class BaseRepository<T> : IRepository<T> where T : class
     {
-        public OpenAuthDBEntities _Context
-        {
-            get
-            {
-                return new OpenAuthDBEntities();
-            }
-        }
+
+        DbContext _Context = EFFactory.GetContext();
         #region 单模型 CRUD 操作
         /// <summary>
         /// 增加一条记录
