@@ -30,12 +30,26 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Users\xiang\Downloads\OpenAuth.Net\OpenAuth.Repository\bin\Debug\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Infrastructure">
+      <HintPath>C:\Users\xiang\Downloads\OpenAuth.Net\OpenAuth.Repository\bin\Debug\Infrastructure.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,12 +58,112 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EntityExtention\Imp\BaseRepository.cs" />
+    <Compile Include="EntityExtention\Imp\PageCollection.cs" />
+    <Compile Include="EntityExtention\IRepository.cs" />
+    <Compile Include="EntityExtention\IUnitWork.cs" />
+    <Compile Include="Entity\Application.cs">
+      <DependentUpon>OpenAuthDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Category.cs">
+      <DependentUpon>OpenAuthDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\CategoryType.cs">
+      <DependentUpon>OpenAuthDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\FlowInstance.cs">
+      <DependentUpon>OpenAuthDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\FlowInstanceOperationHistory.cs">
+      <DependentUpon>OpenAuthDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\FlowInstanceTransitionHistory.cs">
+      <DependentUpon>OpenAuthDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\FlowScheme.cs">
+      <DependentUpon>OpenAuthDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Form.cs">
+      <DependentUpon>OpenAuthDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Module.cs">
+      <DependentUpon>OpenAuthDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\ModuleElement.cs">
+      <DependentUpon>OpenAuthDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\OpenAuthDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OpenAuthDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\OpenAuthDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OpenAuthDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\OpenAuthDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OpenAuthDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Org.cs">
+      <DependentUpon>OpenAuthDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Relevance.cs">
+      <DependentUpon>OpenAuthDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Resource.cs">
+      <DependentUpon>OpenAuthDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Role.cs">
+      <DependentUpon>OpenAuthDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Stock.cs">
+      <DependentUpon>OpenAuthDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Test.cs">
+      <DependentUpon>OpenAuthDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\User.cs">
+      <DependentUpon>OpenAuthDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SystemEntity\SysMenuModel.cs" />
+    <Compile Include="UserViewModel\EntityModel.cs" />
     <Compile Include="UserViewModel\MsgModel.cs" />
+    <Compile Include="UserViewModel\TreeEntity.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EntityDeploy Include="Entity\OpenAuthDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>OpenAuthDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="App.Config" />
+    <None Include="Entity\OpenAuthDB.edmx.diagram">
+      <DependentUpon>OpenAuthDB.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Entity\OpenAuthDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>OpenAuthDB.edmx</DependentUpon>
+      <LastGenOutput>OpenAuthDB.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Entity\OpenAuthDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>OpenAuthDB.edmx</DependentUpon>
+      <LastGenOutput>OpenAuthDB.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{d5ab0268-f8b1-4954-a2bf-954deba413e0}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using DataPojo.Entity;
 
 namespace APICarrier.Tests
 {
@@ -9,6 +10,10 @@ namespace APICarrier.Tests
         [TestMethod]
         public void TestMethod1()
         {
+            OpenAuthDBEntities db = new OpenAuthDBEntities();
+            
+                     
+            
         }
     }
 }

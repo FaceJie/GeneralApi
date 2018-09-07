@@ -133,16 +133,6 @@
     <Compile Include="XmlHelper.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataPojo\DataPojo.csproj">
-      <Project>{bde9cefc-2588-4768-b250-c29e59345c84}</Project>
-      <Name>DataPojo</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PojoService\PojoService.csproj">
-      <Project>{cd6680c4-8da2-4aa6-adc3-b7e1b8caa879}</Project>
-      <Name>PojoService</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

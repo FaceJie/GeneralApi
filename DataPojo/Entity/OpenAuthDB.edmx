@@ -1,0 +1,949 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="OpenAuthDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Application">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="AppSecret" Type="varchar" MaxLength="255" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" />
+          <Property Name="Icon" Type="varchar" MaxLength="255" />
+          <Property Name="Disable" Type="bit" Nullable="false" />
+          <Property Name="CreateTime" Type="date" Nullable="false" />
+          <Property Name="CreateUser" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Disabled" Type="bit" Nullable="false" />
+          <Property Name="SortNo" Type="int" Nullable="false" />
+          <Property Name="Icon" Type="varchar" MaxLength="255" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="TypeId" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CategoryType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FlowInstance">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="InstanceSchemeId" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="200" />
+          <Property Name="CustomName" Type="varchar" MaxLength="200" />
+          <Property Name="ActivityId" Type="varchar" MaxLength="50" />
+          <Property Name="ActivityType" Type="int" />
+          <Property Name="ActivityName" Type="varchar" MaxLength="200" />
+          <Property Name="PreviousId" Type="varchar" MaxLength="50" />
+          <Property Name="SchemeContent" Type="varchar(max)" />
+          <Property Name="SchemeId" Type="varchar" MaxLength="50" />
+          <Property Name="DbName" Type="varchar" MaxLength="50" />
+          <Property Name="FrmData" Type="text" />
+          <Property Name="FrmType" Type="int" Nullable="false" />
+          <Property Name="FrmContentData" Type="text" />
+          <Property Name="FrmContentParse" Type="text" />
+          <Property Name="FrmId" Type="varchar" MaxLength="50" />
+          <Property Name="SchemeType" Type="varchar" MaxLength="50" />
+          <Property Name="Disabled" Type="int" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="CreateUserId" Type="varchar" MaxLength="50" />
+          <Property Name="CreateUserName" Type="varchar" MaxLength="50" />
+          <Property Name="FlowLevel" Type="int" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="200" />
+          <Property Name="IsFinish" Type="int" Nullable="false" />
+          <Property Name="MakerList" Type="varchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="FlowInstanceOperationHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="InstanceId" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Content" Type="nvarchar" MaxLength="200" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="CreateUserId" Type="varchar" MaxLength="50" />
+          <Property Name="CreateUserName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="FlowInstanceTransitionHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="InstanceId" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FromNodeId" Type="varchar" MaxLength="50" />
+          <Property Name="FromNodeType" Type="int" />
+          <Property Name="FromNodeName" Type="varchar" MaxLength="200" />
+          <Property Name="ToNodeId" Type="varchar" MaxLength="50" />
+          <Property Name="ToNodeType" Type="int" />
+          <Property Name="ToNodeName" Type="varchar" MaxLength="200" />
+          <Property Name="TransitionSate" Type="int" Nullable="false" />
+          <Property Name="IsFinish" Type="int" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="CreateUserId" Type="varchar" MaxLength="50" />
+          <Property Name="CreateUserName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="FlowScheme">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SchemeCode" Type="varchar" MaxLength="50" />
+          <Property Name="SchemeName" Type="varchar" MaxLength="200" />
+          <Property Name="SchemeType" Type="varchar" MaxLength="50" />
+          <Property Name="SchemeVersion" Type="varchar" MaxLength="50" />
+          <Property Name="SchemeCanUser" Type="varchar(max)" />
+          <Property Name="SchemeContent" Type="varchar(max)" />
+          <Property Name="FrmId" Type="varchar" MaxLength="50" />
+          <Property Name="FrmType" Type="int" Nullable="false" />
+          <Property Name="AuthorizeType" Type="int" Nullable="false" />
+          <Property Name="SortCode" Type="int" Nullable="false" />
+          <Property Name="DeleteMark" Type="int" Nullable="false" />
+          <Property Name="Disabled" Type="int" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="200" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="CreateUserId" Type="varchar" MaxLength="50" />
+          <Property Name="CreateUserName" Type="varchar" MaxLength="50" />
+          <Property Name="ModifyDate" Type="datetime" />
+          <Property Name="ModifyUserId" Type="varchar" MaxLength="50" />
+          <Property Name="ModifyUserName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Form">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="200" />
+          <Property Name="Fields" Type="int" Nullable="false" />
+          <Property Name="ContentData" Type="text" />
+          <Property Name="ContentParse" Type="text" />
+          <Property Name="Content" Type="text" />
+          <Property Name="SortCode" Type="int" Nullable="false" />
+          <Property Name="Delete" Type="int" Nullable="false" />
+          <Property Name="DbName" Type="varchar" MaxLength="50" />
+          <Property Name="Enabled" Type="int" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="200" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="CreateUserId" Type="varchar" MaxLength="50" />
+          <Property Name="CreateUserName" Type="varchar" MaxLength="50" />
+          <Property Name="ModifyDate" Type="datetime" />
+          <Property Name="ModifyUserId" Type="varchar" MaxLength="50" />
+          <Property Name="ModifyUserName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Module">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CascadeId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Url" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="HotKey" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="IsLeaf" Type="bit" Nullable="false" />
+          <Property Name="IsAutoExpand" Type="bit" Nullable="false" />
+          <Property Name="IconName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="ParentName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Vector" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="SortNo" Type="int" Nullable="false" />
+          <Property Name="ParentId" Type="varchar" MaxLength="50" />
+          <Property Name="Code" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ModuleElement">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DomId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Attr" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Script" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Icon" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Class" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Remark" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Sort" Type="int" Nullable="false" />
+          <Property Name="ModuleId" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TypeName" Type="nvarchar" MaxLength="20" />
+          <Property Name="TypeId" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Org">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CascadeId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="HotKey" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ParentName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="IsLeaf" Type="bit" Nullable="false" />
+          <Property Name="IsAutoExpand" Type="bit" Nullable="false" />
+          <Property Name="IconName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="BizCode" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CustomCode" Type="varchar" MaxLength="4000" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="CreateId" Type="int" Nullable="false" />
+          <Property Name="SortNo" Type="int" Nullable="false" />
+          <Property Name="ParentId" Type="varchar" MaxLength="50" />
+          <Property Name="TypeName" Type="nvarchar" MaxLength="20" />
+          <Property Name="TypeId" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Relevance">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Key" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="OperateTime" Type="datetime" Nullable="false" />
+          <Property Name="OperatorId" Type="varchar" MaxLength="50" />
+          <Property Name="FirstId" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SecondId" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Resource">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CascadeId" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="SortNo" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="ParentName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ParentId" Type="varchar" MaxLength="50" />
+          <Property Name="AppId" Type="varchar" MaxLength="50" />
+          <Property Name="AppName" Type="nvarchar" MaxLength="50" />
+          <Property Name="TypeName" Type="nvarchar" MaxLength="20" />
+          <Property Name="TypeId" Type="varchar" MaxLength="50" />
+          <Property Name="Disable" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="CreateId" Type="varchar" MaxLength="50" />
+          <Property Name="TypeName" Type="nvarchar" MaxLength="20" />
+          <Property Name="TypeId" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Stock">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Number" Type="int" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="10" Scale="1" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="Viewable" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="User" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Time" Type="datetime" Nullable="false" />
+          <Property Name="OrgId" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Test">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="data_1" Type="varchar" MaxLength="255" />
+          <Property Name="data_2" Type="varchar" MaxLength="255" />
+          <Property Name="data_3" Type="varchar" MaxLength="255" />
+          <Property Name="checkboxs_0" Type="int" Nullable="false" />
+          <Property Name="data_7" Type="varchar" MaxLength="255" />
+          <Property Name="data_8" Type="varchar" MaxLength="255" />
+          <Property Name="data_9" Type="text" />
+          <Property Name="data_10" Type="text" />
+          <Property Name="data_11" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Account" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Sex" Type="int" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="BizCode" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="CrateId" Type="varchar" MaxLength="50" />
+          <Property Name="TypeName" Type="nvarchar" MaxLength="20" />
+          <Property Name="TypeId" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="OpenAuthDBModelStoreContainer">
+          <EntitySet Name="Application" EntityType="Self.Application" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CategoryType" EntityType="Self.CategoryType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FlowInstance" EntityType="Self.FlowInstance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FlowInstanceOperationHistory" EntityType="Self.FlowInstanceOperationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FlowInstanceTransitionHistory" EntityType="Self.FlowInstanceTransitionHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FlowScheme" EntityType="Self.FlowScheme" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Form" EntityType="Self.Form" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Module" EntityType="Self.Module" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ModuleElement" EntityType="Self.ModuleElement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Org" EntityType="Self.Org" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Relevance" EntityType="Self.Relevance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Resource" EntityType="Self.Resource" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stock" EntityType="Self.Stock" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Test" EntityType="Self.Test" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="OpenAuthDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Application">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AppSecret" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Icon" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Disable" Type="Boolean" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CreateUser" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Disabled" Type="Boolean" Nullable="false" />
+          <Property Name="SortNo" Type="Int32" Nullable="false" />
+          <Property Name="Icon" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="TypeId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="CategoryType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="FlowInstance">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="InstanceSchemeId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Code" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CustomName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ActivityId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ActivityType" Type="Int32" />
+          <Property Name="ActivityName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="PreviousId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SchemeContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SchemeId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DbName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FrmData" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FrmType" Type="Int32" Nullable="false" />
+          <Property Name="FrmContentData" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FrmContentParse" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FrmId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SchemeType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Disabled" Type="Int32" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreateUserId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreateUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FlowLevel" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="IsFinish" Type="Int32" Nullable="false" />
+          <Property Name="MakerList" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="FlowInstanceOperationHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="InstanceId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Content" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreateUserId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreateUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="FlowInstanceTransitionHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="InstanceId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FromNodeId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FromNodeType" Type="Int32" />
+          <Property Name="FromNodeName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ToNodeId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ToNodeType" Type="Int32" />
+          <Property Name="ToNodeName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="TransitionSate" Type="Int32" Nullable="false" />
+          <Property Name="IsFinish" Type="Int32" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreateUserId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreateUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="FlowScheme">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SchemeCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SchemeName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="SchemeType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SchemeVersion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SchemeCanUser" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SchemeContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FrmId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FrmType" Type="Int32" Nullable="false" />
+          <Property Name="AuthorizeType" Type="Int32" Nullable="false" />
+          <Property Name="SortCode" Type="Int32" Nullable="false" />
+          <Property Name="DeleteMark" Type="Int32" Nullable="false" />
+          <Property Name="Disabled" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreateUserId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreateUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifyUserId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ModifyUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Form">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Fields" Type="Int32" Nullable="false" />
+          <Property Name="ContentData" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ContentParse" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SortCode" Type="Int32" Nullable="false" />
+          <Property Name="Delete" Type="Int32" Nullable="false" />
+          <Property Name="DbName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Enabled" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreateUserId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreateUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifyUserId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ModifyUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Module">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CascadeId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Url" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="HotKey" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IsLeaf" Type="Boolean" Nullable="false" />
+          <Property Name="IsAutoExpand" Type="Boolean" Nullable="false" />
+          <Property Name="IconName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="ParentName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Vector" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SortNo" Type="Int32" Nullable="false" />
+          <Property Name="ParentId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ModuleElement">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DomId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Attr" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Script" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Icon" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Class" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Remark" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Sort" Type="Int32" Nullable="false" />
+          <Property Name="ModuleId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TypeName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="TypeId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Org">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CascadeId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="HotKey" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ParentName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IsLeaf" Type="Boolean" Nullable="false" />
+          <Property Name="IsAutoExpand" Type="Boolean" Nullable="false" />
+          <Property Name="IconName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="BizCode" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CustomCode" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreateId" Type="Int32" Nullable="false" />
+          <Property Name="SortNo" Type="Int32" Nullable="false" />
+          <Property Name="ParentId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TypeName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="TypeId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Relevance">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Key" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="OperateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="OperatorId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FirstId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SecondId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Resource">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CascadeId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SortNo" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ParentName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ParentId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AppId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AppName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TypeName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="TypeId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Disable" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreateId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TypeName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="TypeId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Stock">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Number" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="10" Scale="1" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="Viewable" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="User" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="OrgId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Test">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="data_1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="data_2" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="data_3" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="checkboxs_0" Type="Int32" Nullable="false" />
+          <Property Name="data_7" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="data_8" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="data_9" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="data_10" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="data_11" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Account" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Sex" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="BizCode" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CrateId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TypeName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="TypeId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="OpenAuthDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Application" EntityType="Self.Application" />
+          <EntitySet Name="Category" EntityType="Self.Category" />
+          <EntitySet Name="CategoryType" EntityType="Self.CategoryType" />
+          <EntitySet Name="FlowInstance" EntityType="Self.FlowInstance" />
+          <EntitySet Name="FlowInstanceOperationHistory" EntityType="Self.FlowInstanceOperationHistory" />
+          <EntitySet Name="FlowInstanceTransitionHistory" EntityType="Self.FlowInstanceTransitionHistory" />
+          <EntitySet Name="FlowScheme" EntityType="Self.FlowScheme" />
+          <EntitySet Name="Form" EntityType="Self.Form" />
+          <EntitySet Name="Module" EntityType="Self.Module" />
+          <EntitySet Name="ModuleElement" EntityType="Self.ModuleElement" />
+          <EntitySet Name="Org" EntityType="Self.Org" />
+          <EntitySet Name="Relevance" EntityType="Self.Relevance" />
+          <EntitySet Name="Resource" EntityType="Self.Resource" />
+          <EntitySet Name="Role" EntityType="Self.Role" />
+          <EntitySet Name="Stock" EntityType="Self.Stock" />
+          <EntitySet Name="Test" EntityType="Self.Test" />
+          <EntitySet Name="User" EntityType="Self.User" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="OpenAuthDBModelStoreContainer" CdmEntityContainer="OpenAuthDBEntities">
+          <EntitySetMapping Name="Application">
+            <EntityTypeMapping TypeName="OpenAuthDBModel.Application">
+              <MappingFragment StoreEntitySet="Application">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AppSecret" ColumnName="AppSecret" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="Disable" ColumnName="Disable" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Category">
+            <EntityTypeMapping TypeName="OpenAuthDBModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Disabled" ColumnName="Disabled" />
+                <ScalarProperty Name="SortNo" ColumnName="SortNo" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CategoryType">
+            <EntityTypeMapping TypeName="OpenAuthDBModel.CategoryType">
+              <MappingFragment StoreEntitySet="CategoryType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FlowInstance">
+            <EntityTypeMapping TypeName="OpenAuthDBModel.FlowInstance">
+              <MappingFragment StoreEntitySet="FlowInstance">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="InstanceSchemeId" ColumnName="InstanceSchemeId" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="CustomName" ColumnName="CustomName" />
+                <ScalarProperty Name="ActivityId" ColumnName="ActivityId" />
+                <ScalarProperty Name="ActivityType" ColumnName="ActivityType" />
+                <ScalarProperty Name="ActivityName" ColumnName="ActivityName" />
+                <ScalarProperty Name="PreviousId" ColumnName="PreviousId" />
+                <ScalarProperty Name="SchemeContent" ColumnName="SchemeContent" />
+                <ScalarProperty Name="SchemeId" ColumnName="SchemeId" />
+                <ScalarProperty Name="DbName" ColumnName="DbName" />
+                <ScalarProperty Name="FrmData" ColumnName="FrmData" />
+                <ScalarProperty Name="FrmType" ColumnName="FrmType" />
+                <ScalarProperty Name="FrmContentData" ColumnName="FrmContentData" />
+                <ScalarProperty Name="FrmContentParse" ColumnName="FrmContentParse" />
+                <ScalarProperty Name="FrmId" ColumnName="FrmId" />
+                <ScalarProperty Name="SchemeType" ColumnName="SchemeType" />
+                <ScalarProperty Name="Disabled" ColumnName="Disabled" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateUserId" ColumnName="CreateUserId" />
+                <ScalarProperty Name="CreateUserName" ColumnName="CreateUserName" />
+                <ScalarProperty Name="FlowLevel" ColumnName="FlowLevel" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsFinish" ColumnName="IsFinish" />
+                <ScalarProperty Name="MakerList" ColumnName="MakerList" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FlowInstanceOperationHistory">
+            <EntityTypeMapping TypeName="OpenAuthDBModel.FlowInstanceOperationHistory">
+              <MappingFragment StoreEntitySet="FlowInstanceOperationHistory">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="InstanceId" ColumnName="InstanceId" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateUserId" ColumnName="CreateUserId" />
+                <ScalarProperty Name="CreateUserName" ColumnName="CreateUserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FlowInstanceTransitionHistory">
+            <EntityTypeMapping TypeName="OpenAuthDBModel.FlowInstanceTransitionHistory">
+              <MappingFragment StoreEntitySet="FlowInstanceTransitionHistory">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="InstanceId" ColumnName="InstanceId" />
+                <ScalarProperty Name="FromNodeId" ColumnName="FromNodeId" />
+                <ScalarProperty Name="FromNodeType" ColumnName="FromNodeType" />
+                <ScalarProperty Name="FromNodeName" ColumnName="FromNodeName" />
+                <ScalarProperty Name="ToNodeId" ColumnName="ToNodeId" />
+                <ScalarProperty Name="ToNodeType" ColumnName="ToNodeType" />
+                <ScalarProperty Name="ToNodeName" ColumnName="ToNodeName" />
+                <ScalarProperty Name="TransitionSate" ColumnName="TransitionSate" />
+                <ScalarProperty Name="IsFinish" ColumnName="IsFinish" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateUserId" ColumnName="CreateUserId" />
+                <ScalarProperty Name="CreateUserName" ColumnName="CreateUserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FlowScheme">
+            <EntityTypeMapping TypeName="OpenAuthDBModel.FlowScheme">
+              <MappingFragment StoreEntitySet="FlowScheme">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SchemeCode" ColumnName="SchemeCode" />
+                <ScalarProperty Name="SchemeName" ColumnName="SchemeName" />
+                <ScalarProperty Name="SchemeType" ColumnName="SchemeType" />
+                <ScalarProperty Name="SchemeVersion" ColumnName="SchemeVersion" />
+                <ScalarProperty Name="SchemeCanUser" ColumnName="SchemeCanUser" />
+                <ScalarProperty Name="SchemeContent" ColumnName="SchemeContent" />
+                <ScalarProperty Name="FrmId" ColumnName="FrmId" />
+                <ScalarProperty Name="FrmType" ColumnName="FrmType" />
+                <ScalarProperty Name="AuthorizeType" ColumnName="AuthorizeType" />
+                <ScalarProperty Name="SortCode" ColumnName="SortCode" />
+                <ScalarProperty Name="DeleteMark" ColumnName="DeleteMark" />
+                <ScalarProperty Name="Disabled" ColumnName="Disabled" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateUserId" ColumnName="CreateUserId" />
+                <ScalarProperty Name="CreateUserName" ColumnName="CreateUserName" />
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+                <ScalarProperty Name="ModifyUserId" ColumnName="ModifyUserId" />
+                <ScalarProperty Name="ModifyUserName" ColumnName="ModifyUserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Form">
+            <EntityTypeMapping TypeName="OpenAuthDBModel.Form">
+              <MappingFragment StoreEntitySet="Form">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Fields" ColumnName="Fields" />
+                <ScalarProperty Name="ContentData" ColumnName="ContentData" />
+                <ScalarProperty Name="ContentParse" ColumnName="ContentParse" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="SortCode" ColumnName="SortCode" />
+                <ScalarProperty Name="Delete" ColumnName="Delete" />
+                <ScalarProperty Name="DbName" ColumnName="DbName" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateUserId" ColumnName="CreateUserId" />
+                <ScalarProperty Name="CreateUserName" ColumnName="CreateUserName" />
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+                <ScalarProperty Name="ModifyUserId" ColumnName="ModifyUserId" />
+                <ScalarProperty Name="ModifyUserName" ColumnName="ModifyUserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Module">
+            <EntityTypeMapping TypeName="OpenAuthDBModel.Module">
+              <MappingFragment StoreEntitySet="Module">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CascadeId" ColumnName="CascadeId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="HotKey" ColumnName="HotKey" />
+                <ScalarProperty Name="IsLeaf" ColumnName="IsLeaf" />
+                <ScalarProperty Name="IsAutoExpand" ColumnName="IsAutoExpand" />
+                <ScalarProperty Name="IconName" ColumnName="IconName" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ParentName" ColumnName="ParentName" />
+                <ScalarProperty Name="Vector" ColumnName="Vector" />
+                <ScalarProperty Name="SortNo" ColumnName="SortNo" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ModuleElement">
+            <EntityTypeMapping TypeName="OpenAuthDBModel.ModuleElement">
+              <MappingFragment StoreEntitySet="ModuleElement">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DomId" ColumnName="DomId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Attr" ColumnName="Attr" />
+                <ScalarProperty Name="Script" ColumnName="Script" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="Class" ColumnName="Class" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="ModuleId" ColumnName="ModuleId" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Org">
+            <EntityTypeMapping TypeName="OpenAuthDBModel.Org">
+              <MappingFragment StoreEntitySet="Org">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CascadeId" ColumnName="CascadeId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="HotKey" ColumnName="HotKey" />
+                <ScalarProperty Name="ParentName" ColumnName="ParentName" />
+                <ScalarProperty Name="IsLeaf" ColumnName="IsLeaf" />
+                <ScalarProperty Name="IsAutoExpand" ColumnName="IsAutoExpand" />
+                <ScalarProperty Name="IconName" ColumnName="IconName" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="BizCode" ColumnName="BizCode" />
+                <ScalarProperty Name="CustomCode" ColumnName="CustomCode" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+                <ScalarProperty Name="SortNo" ColumnName="SortNo" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Relevance">
+            <EntityTypeMapping TypeName="OpenAuthDBModel.Relevance">
+              <MappingFragment StoreEntitySet="Relevance">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="OperateTime" ColumnName="OperateTime" />
+                <ScalarProperty Name="OperatorId" ColumnName="OperatorId" />
+                <ScalarProperty Name="FirstId" ColumnName="FirstId" />
+                <ScalarProperty Name="SecondId" ColumnName="SecondId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Resource">
+            <EntityTypeMapping TypeName="OpenAuthDBModel.Resource">
+              <MappingFragment StoreEntitySet="Resource">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CascadeId" ColumnName="CascadeId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SortNo" ColumnName="SortNo" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ParentName" ColumnName="ParentName" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="AppId" ColumnName="AppId" />
+                <ScalarProperty Name="AppName" ColumnName="AppName" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+                <ScalarProperty Name="Disable" ColumnName="Disable" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="OpenAuthDBModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="CreateId" ColumnName="CreateId" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stock">
+            <EntityTypeMapping TypeName="OpenAuthDBModel.Stock">
+              <MappingFragment StoreEntitySet="Stock">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Viewable" ColumnName="Viewable" />
+                <ScalarProperty Name="User" ColumnName="User" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="OrgId" ColumnName="OrgId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Test">
+            <EntityTypeMapping TypeName="OpenAuthDBModel.Test">
+              <MappingFragment StoreEntitySet="Test">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="data_1" ColumnName="data_1" />
+                <ScalarProperty Name="data_2" ColumnName="data_2" />
+                <ScalarProperty Name="data_3" ColumnName="data_3" />
+                <ScalarProperty Name="checkboxs_0" ColumnName="checkboxs_0" />
+                <ScalarProperty Name="data_7" ColumnName="data_7" />
+                <ScalarProperty Name="data_8" ColumnName="data_8" />
+                <ScalarProperty Name="data_9" ColumnName="data_9" />
+                <ScalarProperty Name="data_10" ColumnName="data_10" />
+                <ScalarProperty Name="data_11" ColumnName="data_11" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="OpenAuthDBModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Account" ColumnName="Account" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="BizCode" ColumnName="BizCode" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="CrateId" ColumnName="CrateId" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
